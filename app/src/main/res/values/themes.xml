@@ -1,0 +1,4 @@
+<resources>
+
+    <style name="Theme.OiArlete" parent="Theme.AppCompat.DayNight.NoActionBar" />
+</resources>
