@@ -28,6 +28,17 @@ android {
             )
         }
     }
+    flavorDimensions += listOf("engine")
+    productFlavors {
+        create("stub") {
+            dimension = "engine"
+            buildConfigField("boolean", "USE_NATIVE_WAKE_ASR", "false")
+        }
+        create("porcupineVosk") {
+            dimension = "engine"
+            buildConfigField("boolean", "USE_NATIVE_WAKE_ASR", "true")
+        }
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11

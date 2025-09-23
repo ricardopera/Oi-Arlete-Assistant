@@ -40,9 +40,9 @@ class ArleteService : Service() {
             .setSmallIcon(R.mipmap.ic_launcher)
             .build()
         startForeground(NOTIF_ID, notification)
-        // Inicialização básica
-        wake = WakeWordDetector()
-        asr = SpeechRecognizer()
+    // Inicialização básica (opt-in para engines nativas via flavor)
+    wake = WakeWordDetector()
+    asr = SpeechRecognizer()
         conv = ConversationManager()
         // Para a 1ª versão: foco em wake + comandos de voz + LLM local
         assistant = Assistant(this, conv)
