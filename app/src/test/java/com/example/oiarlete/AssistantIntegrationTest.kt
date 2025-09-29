@@ -39,7 +39,7 @@ class AssistantIntegrationTest {
         )
 
         val assistant = Assistant(app)
-        val longUtterance = "por favor toque legião urbana tempo perdido no youtube music agora mesmo que eu estou animado"
+        val longUtterance = "please play legion urbana tempo perdido on youtube music right now"
         assistant.handleUtterance(longUtterance)
 
         val started = shadowOf(app).nextStartedActivity
@@ -62,7 +62,7 @@ class AssistantIntegrationTest {
         )
 
         val assistant = Assistant(app)
-        assistant.handleUtterance("toque legião urbana no YouTube Music")
+        assistant.handleUtterance("play legion urbana on YouTube Music")
 
         val started = shadowOf(app).nextStartedActivity
         assertEquals("ytmusic", started.data?.scheme)

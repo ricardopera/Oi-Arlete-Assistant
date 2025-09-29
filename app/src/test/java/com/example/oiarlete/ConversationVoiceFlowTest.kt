@@ -32,11 +32,11 @@ class ConversationVoiceFlowTest {
     }
 
     @Test
-    fun `comando parar envia estado para Idle`() {
+    fun `comando stop envia estado para Idle`() {
         val cm = ConversationManager()
         val assistant = Assistant(app, cm)
         cm.onWakeWord()
-        assistant.handleUtterance("parar")
+        assistant.handleUtterance("stop")
         assertEquals(ConversationManager.State.Idle, cm.state)
     }
 }

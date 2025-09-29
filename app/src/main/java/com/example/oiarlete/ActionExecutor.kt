@@ -24,9 +24,9 @@ class ActionExecutor(private val context: Context) {
         tts = TextToSpeech(context) { status ->
             if (status == TextToSpeech.SUCCESS) {
                 try {
-                    val ok = tts?.setLanguage(Locale.forLanguageTag("pt-BR"))
+                    val ok = tts?.setLanguage(Locale.forLanguageTag("en-US"))
                     if (ok == TextToSpeech.LANG_MISSING_DATA || ok == TextToSpeech.LANG_NOT_SUPPORTED) {
-                        tts?.language = Locale("pt", "BR")
+                        tts?.language = Locale("en", "US")
                     }
                 } catch (_: Exception) {}
                 try {

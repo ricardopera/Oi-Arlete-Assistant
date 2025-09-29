@@ -36,9 +36,9 @@ class ArleteServiceIntegrationTest {
         val controller = Robolectric.buildService(ArleteService::class.java).create().startCommand(0, 0)
         val service = controller.get()
 
-        // Simular ciclo: wake → ASR "toque legião urbana no YouTube Music"
+        // Simular ciclo: wake → ASR "play legion urbana on YouTube Music"
         service.testGetWakeDetector().simulateDetection()
-        service.testGetSpeechRecognizer().simulateResult("toque legião urbana no YouTube Music")
+        service.testGetSpeechRecognizer().simulateResult("play legion urbana on YouTube Music")
 
         // Verificar intent lançado
         val started = shadowOf(app).nextStartedActivity

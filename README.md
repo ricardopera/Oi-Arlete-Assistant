@@ -21,8 +21,9 @@ Estrutura principal:
 
 1. Prepare os assets (não versionados):
 
-   - `app/src/main/assets/porcupine_keyword.ppn`
-   - `app/src/main/assets/porcupine_params_pt.pv` (ou en/pt-br)
+   - `app/src/main/assets/alexa_android.ppn` (wake word "Alexa" em inglês)
+   - `app/src/main/assets/americano_android.ppn` (wake word "Americano" em inglês)
+   - `app/src/main/assets/porcupine_params.pv` (parâmetros do modelo em inglês)
    - `app/src/main/assets/vosk-model/` (diretório de modelo com `final.mdl`, `HCLr.fst`, `Gr.fst`, `ivector/final.dubm`, etc.)
 
 1. Build APK:
@@ -37,9 +38,10 @@ Estrutura principal:
 ## Estado Atual (29/09/2025)
 
 - **Serviço & Engines**: `ArleteService` detecta e extrai múltiplos assets de wake word (`.ppn`), suporta Porcupine com várias keywords simultaneamente.
+- **Idioma**: Sistema configurado para **inglês (en-US)** como padrão, usando wake words "Alexa" e "Americano".
 - **Wake (Porcupine)**:
   - Loop manual com `AudioRecord`, fallbacks de fonte/SR, downmix estéreo, reamostragem para 16 kHz.
-  - Suporte a múltiplos modelos de wake word (`porcupine_keyword.ppn`, `porco-espinho_android.ppn`, etc.).
+  - Suporte a múltiplos modelos de wake word em inglês (`alexa_android.ppn`, `americano_android.ppn`).
   - Diagnósticos claros: dispositivo escolhido, SR/canais, fonte, keyword detectada.
 - **ASR (Vosk)**:
   - Carrega `org.vosk.Model` de `files/engines/vosk-model` com fallbacks de fonte/SR e logs detalhados.

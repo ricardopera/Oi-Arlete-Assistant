@@ -18,17 +18,16 @@ class Assistant(
     fun handleUtterance(utterance: String) {
         val normalized = utterance.lowercase()
         // Comandos de controle
-        if (normalized == "parar" || normalized.startsWith("pare") || normalized == "stop") {
+        if (normalized == "stop" || normalized.startsWith("stop") || normalized == "pause") {
             conv?.onStop()
             return
         }
         if (normalized.contains("youtube music")) {
             var q = normalized
-                .replace("toque", "")
-                .replace("no youtube music", "")
-                .replace("no youtube música", "")
-                .replace("no ytmusic", "")
+                .replace("play", "")
+                .replace("on youtube music", "")
                 .replace("youtube music", "")
+                .replace("ytmusic", "")
                 .trim()
             if (q.isBlank()) q = utterance.trim()
             actions.playYouTubeMusic(q)
