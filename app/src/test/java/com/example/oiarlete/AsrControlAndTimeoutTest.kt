@@ -34,6 +34,7 @@ class AsrControlAndTimeoutTest {
 
         // Wake ativa ASR
         wake.simulateDetection()
+    Shadows.shadowOf(Looper.getMainLooper()).idleFor(100, TimeUnit.MILLISECONDS)
         assertTrue(asr.isRunning())
 
         // Reconhecimento inicia fala → ASR deve pausar

@@ -74,6 +74,13 @@ dependencies {
     implementation(libs.jackson.databind)
     implementation(libs.jackson.module.kotlin)
     implementation(libs.kotlinx.coroutines.android)
+    implementation("androidx.media:media:1.7.0")
+    // Native engines
+    implementation(libs.porcupine.android)
+    // Vosk via AAR local em app/libs
+    implementation(files("libs/vosk-android-0.3.70.aar"))
+    // JNA precisa vir como AAR para incluir libjnidispatch.so nas ABIs Android
+    implementation("net.java.dev.jna:jna:5.13.0@aar")
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.test.runner)

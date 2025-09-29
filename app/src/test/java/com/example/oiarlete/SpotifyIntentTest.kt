@@ -12,17 +12,16 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 
 @RunWith(RobolectricTestRunner::class)
-class YouTubeMusicIntentTest {
+class SpotifyIntentTest {
 
     private val app: Application = ApplicationProvider.getApplicationContext()
 
     @Test
-    fun `usa ytmusic scheme quando disponível`() {
-        // Simula que existe uma activity capaz de lidar com ytmusic://
-        val pkg = "com.google.android.apps.youtube.music"
-        val component = ComponentName(pkg, "com.google.android.apps.youtube.music.activities.MusicActivity")
+    fun `usa spotify scheme quando disponível`() {
+        val pkg = "com.spotify.music"
+        val component = ComponentName(pkg, "com.spotify.music.MainActivity")
         val encodedQuery = Uri.encode("legião urbana tempo perdido")
-        val intentFilterIntent = Intent(Intent.ACTION_VIEW, Uri.parse("ytmusic://music/search?query=$encodedQuery"))
+        val intentFilterIntent = Intent(Intent.ACTION_VIEW, Uri.parse("spotify:search:$encodedQuery"))
         shadowOf(app.packageManager).addResolveInfoForIntent(
             intentFilterIntent,
             android.content.pm.ResolveInfo().apply {
@@ -34,24 +33,22 @@ class YouTubeMusicIntentTest {
         )
 
         val executor = ActionExecutor(app)
-        executor.playYouTubeMusic("legião urbana tempo perdido")
+        executor.playSpotifyMusic("legião urbana tempo perdido")
 
         val started = shadowOf(app).nextStartedActivity
-        assertEquals("ytmusic", started.data?.scheme)
+        assertEquals("spotify", started.data?.scheme)
     }
 
     @Test
     fun `fallback para web search quando app não disponível`() {
         val executor = ActionExecutor(app)
         val query = "legião urbana tempo perdido"
-        executor.playYouTubeMusic(query)
+        executor.playSpotifyMusic(query)
 
         val started = shadowOf(app).nextStartedActivity
         assertEquals("https", started.data?.scheme)
-        assertEquals("music.youtube.com", started.data?.host)
-        // query string deve conter q=
-        val qs = started.data?.getQueryParameter("q")
-        // Uri.encode no executor assegura codificação; aqui basta verificar conteúdo
-        assertEquals(query, qs)
+        assertEquals("open.spotify.com", started.data?.host)
+    val qs = started.data?.lastPathSegment
+    assertEquals(query, qs?.let { Uri.decode(it) })
     }
 }

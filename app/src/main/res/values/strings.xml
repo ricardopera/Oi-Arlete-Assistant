@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">OiArlete</string>
+    <string name="accessibility_amazon_music_description">Automação para tocar músicas automaticamente no Amazon Music</string>
 </resources>

@@ -21,7 +21,7 @@ class ArleteServiceIntegrationTest {
         // Preparar resolução para ytmusic://
         val pkg = "com.google.android.apps.youtube.music"
         val component = ComponentName(pkg, "com.google.android.apps.youtube.music.activities.MusicActivity")
-        val intentFilterIntent = Intent(Intent.ACTION_VIEW, Uri.parse("ytmusic://"))
+        val intentFilterIntent = Intent(Intent.ACTION_VIEW, Uri.parse("ytmusic://music/search"))
         shadowOf(app.packageManager).addResolveInfoForIntent(
             intentFilterIntent,
             android.content.pm.ResolveInfo().apply {

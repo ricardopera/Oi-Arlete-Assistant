@@ -9,11 +9,13 @@ class SecretsManager private constructor(private val props: Properties) {
 
     fun getMcpBaseUrl(): String? = get(KEY_MCP_BASE_URL)
     fun getMcpApiKey(): String? = get(KEY_MCP_API_KEY)
+    fun getPicovoiceAccessKey(): String? = get(KEY_PICOVOICE_ACCESS_KEY)
 
     companion object {
         const val FILE_NAME = "secrets.properties"
         const val KEY_MCP_BASE_URL = "MCP_BASE_URL"
         const val KEY_MCP_API_KEY = "MCP_API_KEY"
+    const val KEY_PICOVOICE_ACCESS_KEY = "PICOVOICE_ACCESS_KEY"
 
         fun load(context: Context): SecretsManager {
             val p = Properties()
