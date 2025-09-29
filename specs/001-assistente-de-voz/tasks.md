@@ -1,4 +1,4 @@
-# Tasks: 001-assistente-de-voz
+![1758648664822](image/tasks/1758648664822.png)![1758648668404](image/tasks/1758648668404.png)![1758649004932](image/tasks/1758649004932.png)![1758649007753](image/tasks/1758649007753.png)# Tasks: 001-assistente-de-voz
 
 Feature Dir: D:\AndroidStudioProjects\OiArlete\specs\001-assistente-de-voz
 Branch: 001-assistente-de-voz

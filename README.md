@@ -34,9 +34,30 @@ Estrutura principal:
    - Conecte o ADB (USB ou Wi‑Fi)
    - Instale o APK e abra o app
 
-## Estado Atual (23/09/2025)
+## Estado Atual (29/09/2025)
 
-- Serviço `ArleteService` inicia em primeiro plano, detecta assets e extrai para `files/engines/`.
+- **Serviço & Engines**: `ArleteService` detecta e extrai múltiplos assets de wake word (`.ppn`), suporta Porcupine com várias keywords simultaneamente.
+- **Wake (Porcupine)**:
+  - Loop manual com `AudioRecord`, fallbacks de fonte/SR, downmix estéreo, reamostragem para 16 kHz.
+  - Suporte a múltiplos modelos de wake word (`porcupine_keyword.ppn`, `porco-espinho_android.ppn`, etc.).
+  - Diagnósticos claros: dispositivo escolhido, SR/canais, fonte, keyword detectada.
+- **ASR (Vosk)**:
+  - Carrega `org.vosk.Model` de `files/engines/vosk-model` com fallbacks de fonte/SR e logs detalhados.
+  - Instrumentação para depurar modelos incompletos com listagem de conteúdo.
+- **Assistant & Actions**:
+  - Reprodução musical com fallbacks robustos: MediaControlService → MediaBrowser → intents específicos → web fallback.
+  - Comandos "tocar/reproduzir" defaultam para Spotify com query sanitizada.
+  - Comandos "pausar música/parar música" controlam sessões ativas e usam MediaBrowser como fallback.
+  - Fluxos para YouTube Music, Amazon Music (com automação via AccessibilityService) e Spotify.
+- **Extração de Assets**:
+  - `AssetExtractor` detecta múltiplos `.ppn`, reextrai quando incompleto, loga contagem e erros detalhados.
+- **UI de Diagnóstico**:
+  - Botões para reextrair modelos, listar/selecionar inputs de áudio com persistência.
+  - Painel de eventos do `DiagnosticsBus` com logs em tempo real.
+
+**Funcionalidades Completas**: wake word múltiplo, controle de música avançado, fallbacks de áudio, diagnósticos detalhados.
+
+**Pendências**: otimização de performance em TV boxes de baixo poder (Allwinner H618), possível integração de Whisper local ou Piper TTS para maior qualidade.
 - Wake (Porcupine):
   - Loop manual com `AudioRecord`, fallbacks de fonte/SR, downmix estéreo, reamostragem para 16 kHz, acúmulo de frames.
   - Diagnósticos claros (dispositivo escolhido, SR/canais, fonte, eventos de wake).
